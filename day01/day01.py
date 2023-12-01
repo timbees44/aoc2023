@@ -2,12 +2,8 @@
 def part_one(input):
     with open(input, "r") as f:
         total = 0
-        sub = [] 
-        # could use list comp for neater code
         for line in f:
-            for i in line:
-                if i.isnumeric():
-                    sub.append(i) 
+            sub = [x for x in line if x.isnumeric()]
             total += int(sub[0] + sub[-1])
             sub = [] 
     return total
