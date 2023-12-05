@@ -28,5 +28,24 @@ def part_one(input):
     return poss-imposs
 
 
+def part_two(input):
+    with open(input, "r") as f:
+        power = 0
+        for line in f:
+            maxs = {"red": 0, "green": 0, "blue": 0}
+            y = [x.split() for x in re.findall("(\d+ \w+)", line)] 
+            for i in y:
+                if int(i[0]) > maxs["red"] and i[1] == "red":
+                    maxs["red"] = int(i[0])
+                elif int(i[0]) > maxs["green"] and i[1] == "green":
+                    maxs["green"] = int(i[0])
+                elif int(i[0]) > maxs["blue"] and i[1] == "blue":
+                    maxs["blue"] = int(i[0])
+            power += maxs["red"] * maxs["green"] * maxs["blue"]
+            print(maxs)
+
+        return power
+
 if __name__ == "__main__":
     print(part_one("input.txt"))
+    print(part_two("input.txt"))
